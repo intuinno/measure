@@ -30,7 +30,7 @@
     var message = snapshot.val();
     var receiveTime = Date.now();
     var delay = receiveTime - message.sendTime; 
-    $('<div/>').text('Data Size:' + message.text.length + ' Delay:' + delay + 'ms').prepend($('<em/>')
+    $('<div/>').text('Data Size:' + message.text.length + ' sendTime: ' + message.sendTime + ' receiveTime:' + Date.now() + ' Delay:' + delay + 'ms').prepend($('<em/>')
       .text(message.name+':')).appendTo($('#messagesDiv'));
     $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
     recordRef.push({size:message.text.length, delay: delay});
