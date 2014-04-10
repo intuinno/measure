@@ -1,5 +1,5 @@
 {
-  "firebase": "dimsum",
+  "firebase": "dimsum2",
   "public": "public",
   "rules": "config/rules.json"
 }

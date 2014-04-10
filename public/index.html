@@ -11,7 +11,8 @@
 <script>
 
   // Get a reference to the root of the chat data.
-  var messagesRef = new Firebase('https://dimsum.firebaseio.com/measure');
+  var messagesRef = new Firebase('https://dimsum2.firebaseio.com/measure');
+  var recordRef = new Firebase('https://dimsum2.firebaseio.com/record');
 
   // When the user presses enter on the message input, write the message to firebase.
   $('#messageInput').keypress(function (e) {
@@ -29,9 +30,10 @@
     var message = snapshot.val();
     var receiveTime = Date.now();
     var delay = receiveTime - message.sendTime; 
-    $('<div/>').text('Data Size:' + message.text.length + ' sendTime: ' + message.sendTime + ' receiveTime:' + Date.now() + ' Delay:' + delay + 'ms').prepend($('<em/>')
+    $('<div/>').text('Data Size:' + message.text.length + ' Delay:' + delay + 'ms').prepend($('<em/>')
       .text(message.name+':')).appendTo($('#messagesDiv'));
     $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+    recordRef.push({size:message.text.length, delay: delay});
   });
 
   var i = 1; 
